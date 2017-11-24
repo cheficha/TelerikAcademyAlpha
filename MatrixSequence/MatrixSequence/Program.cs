@@ -23,88 +23,90 @@ namespace MatrixSequence
                     matrix[i, j] = shano[j];
                 }
             }
-            int sequence = 0;
-            int MaxSequence = 0;
-            int SideMax = 0;
-            int dMax = 0;
-            int d2Max = 0;
-            // //sequences Down&Up
-            for (int col = 0; col < matrix.GetLength(1); col++)
+            int MaxLength = 0;
+            for (int row = 0; row <matrix.GetLength(0); row++)
             {
-
-                sequence = 1;
-                for (int row = 1; row < matrix.GetLength(0); row++)
+                for (int col = 0; col < matrix.GetLength(1); col++)
                 {
+                    int sequence = 1;
+                    //for (int i = 1; col+i < matrix.GetLength(1); i++)//lqvo/dqsno
+                    //{
+                    //    if (matrix[row,col]==matrix[row,col+i])
+                    //    {
+                    //        sequence++;
+                    //    }
+                    //    else
+                    //    {
+                    //        break;
+                    //    }
 
-                    if (matrix[row, col].Equals(matrix[row - 1, col]))
+                    //    if (MaxLength<sequence)
+                    //    {
+                    //        MaxLength = sequence;
+                    //        sequence = 1;
+                    //    }
+  
+                    //}
+
+                    for (int i = 1; row + i <matrix.GetLength(0); i++)//gore/dolu
                     {
-                        sequence++;
+                        if (matrix[row, col] == matrix[row + i, col])
+                        {
+                            sequence++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                        if (MaxLength < sequence)
+                        {
+                            MaxLength = sequence;
+                            sequence = 1;
+                        }
 
                     }
-                }
-                if (MaxSequence < sequence)
-                {
-                    MaxSequence = sequence;
+                    //for (int i = 1; row+i < matrix.GetLength(0)&&cols+1<matrix.GetLength(1) ; i++)//lqvo-dqsno-diagonal
+                    //{
+                    //    if (matrix[row,col]==matrix[row+i,col+i])
+                    //    {
+                    //        sequence++;
+                    //    }
+                    //    else
+                    //    {
+                    //        break;
+                    //    }
+                    //    if (MaxLength<sequence)
+                    //    {
+                    //        MaxLength = sequence ;
+                    //        sequence = 1;
+                    //    }
+
+                    //}
+                    //for (int i = 1; row + i < matrix.GetLength(0) && col - 1 >=0 ; i++)//dqsno-lqvo-diagonal
+                    //{
+                    //    if (matrix[row, col] == matrix[row + i, col - i])
+                    //    {
+                    //        sequence++;
+                    //    }
+                    //    else
+                    //    {
+                    //        break;
+                    //    }
+                    //    if (MaxLength < sequence)
+                    //    {
+                    //        MaxLength = sequence;
+                    //        sequence = 1;
+                    //    }
+
+                    //}
                 }
             }
-            // Console.WriteLine(MaxSequence);
-            // sequence Right&Left
-            for (int sideRow = 0; sideRow < matrix.GetLength(0); sideRow++)
-            {
+            Console.WriteLine(MaxLength);
 
-                sequence = 1;
-                for (int sideCol = 1; sideCol < matrix.GetLength(1); sideCol++)
-                {
-                    if (matrix[sideRow, sideCol].Equals(matrix[sideRow, sideCol - 1]))
-                    {
-                        sequence++;
-                    }
-                }
-                if (SideMax < sequence)
-                {
-                    SideMax = sequence;
-                }
-
-            }
-            // Console.WriteLine(SideMax);
-            //DIAGONALITE DO SREDA 
-            for (int row = matrix.GetLength(0) - 2; row >= 0; row--)
-           {
-                sequence = 1;
-                
-              for (int secRow = row, col = 0; secRow < matrix.GetLength(1)-2; secRow++, col++)
-                  {
-                    if (matrix[secRow+1,col+1]==matrix[secRow,col])
-                    {
-                        sequence++;
-                    }
-
-                  }
-                if (dMax<sequence)
-                {
-                    dMax =  sequence+2;
-                }
-           }
-            //Console.WriteLine(dMax);
-            //DIAGONALI OT SREDA
-            for (int col = 1; col < matrix.GetLength(1)+2; col++)
-            {
-                for (int secCol = col, row = 0; secCol < matrix.GetLength(0)-2; secCol++ , row++)
-                {
-                    if (matrix[row, secCol] == matrix[row + 1, secCol + 1])
-                    {
-                        sequence++;
-                    }
-                    
-
-                }
-                if (d2Max<sequence)
-                {
-                    d2Max = sequence;
-                }
-            }
-            Console.WriteLine(d2Max);
         }
-       }
+       
+
+    }
     }
 
