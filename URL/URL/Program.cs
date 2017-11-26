@@ -12,16 +12,16 @@ namespace URL
         {
             string URL = Console.ReadLine();
             string [] protocol=URL.Split(':');
-            Console.WriteLine("[protocol]={0}",protocol[0]);
+            Console.WriteLine("[protocol] = {0}",protocol[0]);
             StringBuilder str = new StringBuilder();
             string[] server = URL.Split('/');
-            Console.WriteLine("[server]={0}",server[2]);
+            Console.WriteLine("[server] = {0}",server[2]);
             for (int i = 3; i < server.Length; i++)
             {
                 str.Append("/");
                 str.Append(server[i]);
             }
-            Console.WriteLine("[resource]={0}",str.ToString());
+            Console.WriteLine("[resource] = {0}",str.ToString());
 
           
         }
