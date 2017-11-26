@@ -28,7 +28,7 @@ namespace BraketsChecker
             }
             if (counter!=0)
             {
-                Console.WriteLine("Wrong");
+                Console.WriteLine("Incorrect");
             }
             else
             {
