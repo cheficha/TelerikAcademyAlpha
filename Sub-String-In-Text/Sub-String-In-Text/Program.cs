@@ -12,12 +12,16 @@ namespace Sub_String_In_Text
     {
         static void Main(string[] args)
         {
-            Regex regex = new Regex(Console.ReadLine());
+            string input = Console.ReadLine();
             string text = Console.ReadLine();
-            int counter = 0;
-            foreach (Match match in regex.Matches(text))
+            int counter = 1;
+            string [] textArr = text.Split(' ');
+            for (int i = 0; i < textArr.Length; i++)
             {
-                counter++;
+                if (textArr[i].Contains(input))
+                {
+                    counter++;
+                }
             }
             Console.WriteLine(counter);
         }
