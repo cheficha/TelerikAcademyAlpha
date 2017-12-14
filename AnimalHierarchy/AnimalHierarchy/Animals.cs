@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AnimalHierarchy
 {
-   abstract class Animals: ISound
+   abstract class Animals: IAnimal,ISound
     {
         private string name;
         private int age;
@@ -31,6 +31,10 @@ namespace AnimalHierarchy
         public virtual string ProduceSound()
         {
             return $"All animals are different";
+        }
+        public static void CalcAge()
+        {
+
         }
         public string Print()
         {
