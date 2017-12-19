@@ -13,6 +13,8 @@ namespace DIvisibleNubmers
             int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var numbers = new Numbers(arr);
             numbers.Divisible();
+            var timer = new Chefo(Timer.Time);
+            timer(2);
         }
     }
 }
