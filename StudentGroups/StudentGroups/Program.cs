@@ -21,15 +21,16 @@ namespace StudentGroups
             marks.Add(3.6);
 
             var student = new Student("Stefan","Zhekov","F74278","stefanzhekov95@gmail.com",marks,2);
-            var student1 = new Student("Zornitca", "Zhekov", "F74278", "stefanzhekov95@gmail.com", marks, 2);
-            var student2 = new Student("Cheficha", "Petrov", "F74218", "stefanzhekov295@gmail.com", marks, 3);
+            var student1 = new Student("Zornitca", "Zhekov", "F74278", "stefanzhekov95@abv.bg", marks, 2);
+            var student2 = new Student("Cheficha", "Petrov", "F74218", "stefanzhekov295@abv.bg", marks, 3);
             var student3= new Student("Chefak", "Zhekov", "F74178", "stefanzhekov95@gmail.com", marks, 1);
             students.Add(student);
             students.Add(student1);
             students.Add(student2);
             students.Add(student3);
 
-            students.Group();
+            //students.Group();
+            students.EmailExtract();
 
         }
     }
