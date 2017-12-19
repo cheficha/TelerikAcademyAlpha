@@ -8,6 +8,8 @@ namespace OrderStudentsByName
 {
     public class Student
     {
+        public event EventHandler BuyTicket;
+
         private string fname;
         private string sname;
         public Student(string fname, string sname)
@@ -24,6 +26,10 @@ namespace OrderStudentsByName
             sb.AppendLine(this.SecondName);
             return sb.ToString();
 
+        }
+        public void OnTicketBuy()
+        {
+            this.BuyTicket?.Invoke(this, null);
         }
 
 

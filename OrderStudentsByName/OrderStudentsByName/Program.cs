@@ -10,15 +10,21 @@ namespace OrderStudentsByName
     {
         static void Main(string[] args)
         {
-            var student = new Student("Cheficha","Zhekov");
+            var student = new Student("Cheficha", "Zhekov");
+            student.BuyTicket += new EventHandler(OnBoughtTicket);
+            student.OnTicketBuy();
             var student1 = new Student("Zorq", "Asenova");
             var student2 = new Student("Zorq", "Zhekov");
             var student3 = new Student("Anita", "Chickita");
             var student4 = new Student("Stefan", "Zhekov");
             var student5 = new Student("Teodora", "Petrova");
-            var students = new Student[] {student,student1,student2,student3,student4,student5 };
+            var students = new Student[] { student, student1, student2, student3, student4, student5 };
             students.Sort();
 
+        }
+        public static void OnBoughtTicket(object sender,EventArgs e)
+        {
+            Console.WriteLine(((Student)sender).FirstName+" bought a ticket");
         }
     }
 }
