@@ -20,17 +20,18 @@ namespace StudentGroups
             marks.Add(5.2);
             marks.Add(3.6);
 
-            var student = new Student("Stefan","Zhekov","F74278","stefanzhekov95@gmail.com",marks,2);
-            var student1 = new Student("Zornitca", "Zhekov", "F74278", "stefanzhekov95@abv.bg", marks, 2);
-            var student2 = new Student("Cheficha", "Petrov", "F74218", "stefanzhekov295@abv.bg", marks, 3);
-            var student3= new Student("Chefak", "Zhekov", "F74178", "stefanzhekov95@gmail.com", marks, 1);
+            var student = new Student("Stefan","Zhekov","02/2134","stefanzhekov95@gmail.com",marks,2);
+            var student1 = new Student("Zornitca", "Zhekov", "02/32124", "stefanzhekov95@abv.bg", marks, 2);
+            var student2 = new Student("Cheficha", "Petrov", "3512312", "stefanzhekov295@abv.bg", marks, 3);
+            var student3= new Student("Chefak", "Zhekov", "359882911905", "stefanzhekov95@gmail.com", marks, 1);
             students.Add(student);
             students.Add(student1);
             students.Add(student2);
             students.Add(student3);
 
             //students.Group();
-            students.EmailExtract();
+            //students.EmailExtract();
+            students.SofiaPhones();
 
         }
     }
