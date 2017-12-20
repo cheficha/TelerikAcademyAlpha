@@ -11,11 +11,13 @@ namespace StudentGroups
         private string firstname;
         private string lastname;
         private string fN;
+        private int studentNumber;
         private string email;
         private List<double> marks;
         private int groupNumber;
-        public Student(string firstname,string lastname,string fN,string email,List<double>marks,int groupNumber)
+        public Student(string firstname, string lastname, string fN, int studentNumber, string email,List<double>marks,int groupNumber)
         {
+            this.StudentNumber=studentNumber;
             this.FirstName = firstname;
             this.LastName = lastname;
             this.FN = fN;
@@ -23,6 +25,7 @@ namespace StudentGroups
             this.Marks = marks;
             this.GroupNumber = groupNumber;
         }
+        public int StudentNumber { get {return this.studentNumber; }set {this.studentNumber=value; } }
         public string FirstName { get { return this.firstname; } set { this.firstname = value; } }
         public string LastName { get { return this.lastname; } set { this.lastname = value; } }
         public string FN { get { return this.fN; } set { this.fN = value; } }
