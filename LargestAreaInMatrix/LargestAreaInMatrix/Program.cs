@@ -32,7 +32,7 @@ namespace LargestAreaInMatrix
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    if (used[row,col])
+                    if (used[row,col]==false)
                     {
                         currentArea = 0;
                         DFS(matrix,row,col,matrix[row][col]);
@@ -44,7 +44,7 @@ namespace LargestAreaInMatrix
 
         private static void DFS(int[][] matrix, int row, int col, int targetValue)
         {
-            if (row<0||col<=0||row>rows-1||col>cols-1)
+            if (row<0||col<0||row>rows-1||col>cols-1)
             {
                 return;
             }
@@ -57,8 +57,13 @@ namespace LargestAreaInMatrix
                 return;
             }
             currentArea++;
+            
             used[row, col] = true;
-            greatestArea = greatestArea < currentArea ? currentArea : greatestArea;
+            if (greatestArea<=currentArea)
+            {
+                greatestArea = currentArea;
+            }
+            
             DFS(matrix,row+1,col,targetValue);
             DFS(matrix, row - 1, col, targetValue);
             DFS(matrix, row , col+1, targetValue);

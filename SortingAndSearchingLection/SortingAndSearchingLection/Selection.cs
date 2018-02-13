@@ -24,7 +24,7 @@ namespace SortingAndSearchingLection
 
             }
         }
-        private static void Swap(int i, int j, T[] arr)
+        private static void Swap(int i, int j, int[] arr)
         {
             var temp = arr[j];
             arr[j] = arr[i];

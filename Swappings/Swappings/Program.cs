@@ -4,111 +4,110 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Swappings
 {
     class Program
     {
         static void Main(string[] args)
         {
+        
+          
             int numbers = int.Parse(Console.ReadLine());
-            string input = Console.ReadLine();
-            int[] separators = input.Split(' ').Select(int.Parse).ToArray().ToArray();
-            var linked = new LinkedList<int>();
-            linked.AddFirst(1);
-            linked.AddAfter(linked.First, 2);
-            var next = linked.First.Next;
-            for (int i = 3; i <= numbers; i++)
+           var separators = Console.ReadLine().Split(' ').Select(int.Parse).ToArray().ToArray();
+            var dict = new Dictionary<int, Node>();
+            var list = new List<Node>();
+            
+            for (int i = 1; i <=numbers; i++)
             {
-                if (i == numbers)
+                if (i==1)
                 {
-                    linked.AddLast(i);
+                    dict.Add(i, new Node { Value = i, Previous = null });
                 }
-                else
+                else if (i==numbers)
                 {
-                    linked.AddAfter(next, i);
-
+                dict.Add(i,new Node { Value=i,Previous=dict[i-1],Next=null});
+                    if (dict[i].Previous != null)
+                    {
+                        dict[i - 1].Next = dict[i];
+                    }
                 }
-                next = next.Next;
+                else if (i-1>0)
+                {
+                    
+                        dict.Add(i, new Node { Value = i, Previous = dict[i - 1]});
+                    
+                    if (dict[i].Previous != null)
+                    {
+                        dict[i - 1].Next = dict[i];
+                    }
+                   
+                }
+              
+            }///Dict and Next + Previous Assing
 
-            }
+            Node head = dict[1];
+            Node tail = dict[numbers];
             for (int i = 0; i < separators.Length; i++)
             {
-                int x = separators[i];
-                linked.Find(x);
-                //Ako X e Purvo Chislo ! Works!
-                if (linked.First.Value == x)
+                var n = separators[i];
+          
+                if (dict[n]==tail)
                 {
-                    linked.First.Value = linked.First.Next.Value;
-                    linked.First.Next.Value = linked.First.Next.Next.Value;
-                    linked.First.Next.Next.Value = linked.First.Next.Next.Next.Value;
-                    linked.First.Next.Next.Next.Value = x;
-
-                }
-                //Ako X e Vtoro Chislo
-                else if (linked.First.Next.Value == x)
-                {
-                    linked.First.Next.Value = linked.First.Next.Next.Value;
-                    linked.First.Next.Next.Value = linked.First.Next.Next.Next.Value;
-                    linked.First.Next.Next.Next.Value = linked.First.Next.Next.Next.Next.Value;
-                    linked.First.Next.Next.Next.Next.Next.Value = linked.First.Value;
-                    linked.RemoveFirst();
-                    linked.First.Next.Next.Next.Next.Value = x;
-                }
-                //Ako X e Treto Chislo
-                else if (linked.First.Next.Next.Value==x)
+                    Node Come = tail;
+                    Node On = head;
+                    tail = tail.Previous;
+                    head = Come;
+                    Come.Next = On;
+                    tail.Next = null;
                     
-                {
-                    linked.First.Next.Value = linked.First.Next.Next.Value;
-                    linked.First.Next.Next.Value = linked.First.Next.Next.Next.Value;
-
-                    linked.First.Next.Next.Next.Value = linked.First.Next.Next.Next.Next.Value;
-                    linked.First.Next.Next.Next.Next.Value = linked.First.Next.Next.Next.Next.Next.Value;
-                    linked.First.Next.Next.Next.Next.Next.Value = x;
-                }
-                //Posledno
-                else if (linked.Last.Value==x)
-                {
-                    linked.Last.Value = linked.Last.Previous.Value;
-                    linked.Last.Previous.Value = linked.Last.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Value = linked.Last.Previous.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Previous.Value = x;
 
                 }
-                //Pred Posledno
-                else if (linked.Last.Value == x)
+                else if (dict[n]==head)
                 {
-                    linked.Last.Previous.Value = linked.Last.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Value = linked.Last.Previous.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Previous.Value = linked.Last.Previous.Previous.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Previous.Previous.Value = x;
-
-                }
-                //Pred pred Posledno
-                else if (linked.Last.Value == x)
-                {
-                    linked.Last.Previous.Previous.Value = linked.Last.Previous.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Previous.Value = linked.Last.Previous.Previous.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Previous.Previous.Value = linked.Last.Previous.Previous.Previous.Previous.Previous.Value;
-                    linked.Last.Previous.Previous.Previous.Previous.Previous.Value = x;
-
+                    Node Come = tail;
+                    Node On = head;
+                    head = head.Next;
+                    tail = On;
+                    tail.Previous = Come;
+                    Come.Next = tail;
+                    tail.Next = null;
                 }
                 else
                 {
+                    var TempNext = dict[n].Next;
+                    var tempHead = head;
+                    var tempTail = tail;
 
-                }
+                    tail = dict[n].Previous;
+                    head = dict[n].Next;
 
-            }
-            foreach (var item in linked)
-            {
-                Console.Write(item+" ");
-                
-            }
-           
+                    dict[n].Next = tempHead;
+                    dict[n].Previous = tempTail;
+                    tempHead.Previous = dict[n];
+                    tempTail.Next = dict[n];
 
-
-
-
+                    }
 
         }
+
+            tail.Next = null;
+            head.Previous = null;
+            Node temp = head;
+            while (temp != null)
+            {
+                Console.Write(temp.Value + " ");
+                temp = temp.Next;
+            }
+            }
+          
+          
+    }
+    public class Node
+    {
+        public Node Next { get; set; }
+        public Node Previous { get; set; }
+        public int Value { get; set; }
+       
     }
 }

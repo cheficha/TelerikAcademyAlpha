@@ -7,7 +7,6 @@ using System.Threading;
 using System.Diagnostics;
 namespace DIvisibleNubmers
 {
-    public delegate void Chefo(int sec);
    public  class Timer
     {
         public static void Time(int sec)

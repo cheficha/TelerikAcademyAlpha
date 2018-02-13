@@ -18,10 +18,10 @@ namespace OnlyDuplicatesNestedLoopsAlgorithm
             Console.WriteLine("K:");
             CountK = int.Parse(Console.ReadLine());
             loops = new int[LoopsN];
-            Duplicates(0);
+            NotDuplicates(0);
 
         }
-        public static void Duplicates(int currentLoop)
+        public static void NotDuplicates(int currentLoop)
         {
             if (currentLoop==LoopsN)
             {
@@ -31,7 +31,7 @@ namespace OnlyDuplicatesNestedLoopsAlgorithm
             for (int i = 1; i <= CountK; i++)
             {
                 loops[currentLoop] = i;
-                Duplicates(currentLoop+1);
+                NotDuplicates(currentLoop+1);
             }
         }
         public static void Print()
@@ -40,7 +40,7 @@ namespace OnlyDuplicatesNestedLoopsAlgorithm
             {
                 if (i + 1 <= loops.Length - 1)
                 {
-                    if (loops[i] == loops[i + 1])
+                    if (loops[i] != loops[i + 1])
                     {
                         Console.Write(loops[i] + " "+loops[i+1]);
                         Console.WriteLine();

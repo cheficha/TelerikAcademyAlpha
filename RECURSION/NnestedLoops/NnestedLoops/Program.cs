@@ -10,12 +10,19 @@ namespace NnestedLoops
     {
         static int numberOfLoops;
         static int elements;
-        static int[] loops;
+        static string[] loops;
+        static string[] strings;
         static void Main(string[] args)
         {
             numberOfLoops = int.Parse(Console.ReadLine());
-             elements = int.Parse(Console.ReadLine());
-            loops = new int[numberOfLoops];
+            elements = int.Parse(Console.ReadLine());
+
+            loops = new string [numberOfLoops];
+            for (int i = 0; i < numberOfLoops; i++)
+            {
+                var input = Console.ReadLine();
+                loops[i] = input;
+            }
             NestLoop(0);
 
         }
@@ -26,10 +33,13 @@ namespace NnestedLoops
                 Print();
                 return;
             }
-            for (int i = 1; i <= elements; i++)
+            for (int i = 0; i <= elements; i++)
             {
-                loops[n] = i;
-                 NestLoop(n+1);
+
+                strings[i] = loops[i];
+                    NestLoop(n + 1);
+
+                
             }
 
         }
@@ -37,7 +47,7 @@ namespace NnestedLoops
         {
             foreach (var item in loops)
             {
-                Console.Write(item+" ");
+                Console.Write(item+",");
             }
             Console.WriteLine();
         }

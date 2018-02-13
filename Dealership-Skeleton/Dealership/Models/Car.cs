@@ -4,7 +4,7 @@ using Dealership.Contracts;
 
 namespace Dealership.Models
 {
-    public class Car:Vehicle,ICar
+    public class Car:Vehicle,ICar,SomeInterface
     {
         private int seats;
         private readonly int wheels;

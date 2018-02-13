@@ -16,7 +16,8 @@ namespace CokiSkoki
             var num = int.Parse(Console.ReadLine());
             string input = Console.ReadLine();
             var buildings = input.Split(' ').Select(int.Parse).ToArray();
-            seq = new int[num];
+            var sb = new StringBuilder();
+            int[] seq = new int[num];
             for (int i = 0; i < num; i++)
             {
                 var A = i;
@@ -36,18 +37,13 @@ namespace CokiSkoki
                 }
                 A = 0;
                 seq[i] = jump;
+                sb.Append($"{jump} ");
                 
                
                 jump = 0;
             }
             Console.WriteLine(seq.Max());
-            foreach (var item in seq)
-            {
-            
-                Console.Write(item + " ");
-
-            }
-            Console.WriteLine();
+            Console.WriteLine(sb.ToString().Trim());
            
         
         }
